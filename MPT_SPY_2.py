@@ -62,11 +62,18 @@ print('Maximum Sharpe Ratio Portfolio Weights:')
 for i in range(len(tickers)-1):
     print(tickers[i], ':', round(max_sr_weights[i]*100, 2), '%')
 
+#show maximum sharpe ratio portfolio return and volatility
+print('Maximum Sharpe Ratio Portfolio Return:', round(max_sr_ret*100, 2), '%')
+print('Maximum Sharpe Ratio Portfolio Volatility:', round(max_sr_vol*100, 2), '%')
+
 #show minimum volatility portfolio
 min_vol_weights = all_weights[volatility_arr.argmin()]
 print('Minimum Volatility Portfolio Weights:')
 for i in range(len(tickers)-1):
     print(tickers[i], ':', round(min_vol_weights[i]*100, 2), '%')
+#show minimum volatility portfolio return and volatility
+print('Minimum Volatility Portfolio Return:', round(min_vol_ret*100, 2), '%')
+print('Minimum Volatility Portfolio Volatility:', round(min_vol_vol*100, 2), '%')
 
 # Plotting the 1000 random portfolios along with SPY
 plt.figure(figsize=(12,8))
@@ -74,6 +81,12 @@ plt.scatter(volatility_arr, return_arr, c=sharpe_arr, cmap='viridis')
 plt.colorbar(label='Sharpe Ratio')
 plt.xlabel('Volatility')
 plt.ylabel('Return')
+
+#plot the tangent line to the efficient frontier
+x = np.linspace(0, 0.3, 100)
+y = max_sr_ret/max_sr_vol * x
+plt.plot(x, y, 'r', label='Capital Market Line')
+
 
 # Mark the portfolio with maximum Sharpe Ratio
 plt.scatter(max_sr_vol, max_sr_ret, c='red', s=50, edgecolors='black', label='Maximum Sharpe Ratio')
