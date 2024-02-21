@@ -10,7 +10,8 @@ from pypfopt.risk_models import sample_cov
 
 # Input tickers
 tickers = input("Enter tickers separated by commas: ").split(',')
-
+#enter risk free rate
+rf = float(input("Enter the risk free rate: "))
 # Add SPY for benchmark comparison but exclude it from the portfolio optimization
 tickers.append('SPY')
 
@@ -47,7 +48,8 @@ for i in range(num_portfolios):
     volatility_arr[i] = np.sqrt(np.dot(weights.T, np.dot(S, weights)))
     
     # Sharpe Ratio
-    sharpe_arr[i] = return_arr[i] / volatility_arr[i]
+    sharpe_arr[i] = return_arr[i]-rf / volatility_arr[i]
+    
 
 # Portfolio with maximum Sharpe Ratio excluding SPY
 max_sr_ret = return_arr[sharpe_arr.argmax()]
