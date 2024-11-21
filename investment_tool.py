@@ -1,3 +1,7 @@
+#### for innputs H is for holdings of the top 500 funds and B is for the most bought stocks in the last quarter 
+#### strategies are E for equal weight, S for sharpe ratio maximization and R for risk parity - or minimum volatility. Max sharpe has a min max of 1000 and 15000 respectively to keep diversity
+#### the data being used is for historical data to calculate the sharpe ratio 
+#### we could also include a portfolio that is a mirror of the mutual fund holdings 
 import wrds
 import pandas as pd
 import numpy as np
